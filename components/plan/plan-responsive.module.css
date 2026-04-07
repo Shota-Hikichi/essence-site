@@ -1,0 +1,25 @@
+.approachGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+@media (max-width: 1023px) {
+  .approachGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+}

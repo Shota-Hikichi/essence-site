@@ -1,0 +1,12 @@
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .hamburger {
+    display: flex;
+  }
+  .desktopNav {
+    display: none;
+  }
+}
