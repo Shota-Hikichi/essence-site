@@ -7,9 +7,10 @@ import styles from './header.module.css';
 const navItems = [
   { href: '/#services', label: 'サービス' },
   { href: '/#flow', label: 'ご利用の流れ' },
-  { href: '/#testimonials', label: 'メンバーの声' },
   { href: '/#plans', label: 'プラン' },
+  { href: '/lab', label: 'Essence Lab' },
   { href: '/#faq', label: 'FAQ' },
+  { href: '/#contact', label: 'お問い合わせ' },
 ];
 
 const BOOKING_URL = 'https://qyzxk47dyy.jp.larksuite.com/scheduler/176525bd10e971ba';

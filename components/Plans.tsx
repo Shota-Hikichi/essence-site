@@ -19,8 +19,7 @@ export default function Plans() {
             <p className="plan-period">税込</p>
             <ul className="plan-features">
               <li><span className="plan-check">&#10003;</span> チャットサポート</li>
-              <li><span className="plan-check">&#10003;</span> 月1回の電話相談</li>
-              <li><span className="plan-check">&#10003;</span> ロードマップ作成</li>
+              <li><span className="plan-check">&#10003;</span> 電話相談 週1回（30分/回）</li>
               <li><span className="plan-check">&#10003;</span> 学習管理</li>
             </ul>
             <Link href="/plan/minimum" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
@@ -38,10 +37,11 @@ export default function Plans() {
             <p className="plan-period">税込</p>
             <ul className="plan-features">
               <li><span className="plan-check">&#10003;</span> チャットサポート</li>
-              <li><span className="plan-check">&#10003;</span> 月2回の電話相談</li>
+              <li><span className="plan-check">&#10003;</span> 電話相談 週2回（1時間/回）</li>
               <li><span className="plan-check">&#10003;</span> ロードマップ作成</li>
               <li><span className="plan-check">&#10003;</span> 学習管理</li>
               <li><span className="plan-check">&#10003;</span> 小論文添削</li>
+              <li><span className="plan-check">&#10003;</span> 月次進捗レポート</li>
             </ul>
             <Link href="/plan/standard" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
               詳細を見る
@@ -57,11 +57,11 @@ export default function Plans() {
             <p className="plan-period">税込</p>
             <ul className="plan-features">
               <li><span className="plan-check">&#10003;</span> チャットサポート</li>
-              <li><span className="plan-check">&#10003;</span> 電話相談無制限</li>
+              <li><span className="plan-check">&#10003;</span> 電話相談 回数・時間無制限</li>
               <li><span className="plan-check">&#10003;</span> ロードマップ作成</li>
               <li><span className="plan-check">&#10003;</span> 学習管理</li>
               <li><span className="plan-check">&#10003;</span> 小論文添削（無制限）</li>
-              <li><span className="plan-check">&#10003;</span> 月次進捗レポート</li>
+              <li><span className="plan-check">&#10003;</span> 週次進捗レポート</li>
             </ul>
             <Link href="/plan/fullcommit" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
               詳細を見る

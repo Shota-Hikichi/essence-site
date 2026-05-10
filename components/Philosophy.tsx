@@ -17,7 +17,9 @@ export default function Philosophy() {
         >
           <span style={{ color: 'var(--primary)' }}>自分で自分を改善できる考え方</span>、<br />
           そして<br />
-          <span style={{ color: 'var(--primary)' }}>どこに向けて努力をしていけばいいかの軌道修正</span>を<br />
+          <span style={{ color: 'var(--primary)' }}>
+            どこに向けて努力をしていけばいいかの<br className="mobile-br" />軌道修正
+          </span>を<br />
           二人三脚で行う、唯一の場所。
         </h2>
         <div
@@ -43,6 +45,22 @@ export default function Philosophy() {
           受験に必要なのは、誰かに教わった知識ではなく<br />
           「自分で考え、自分で改善し続ける力」です。<br />
           Essenceはその力を引き出しながら、合格までの道筋を一緒に歩みます。
+        </p>
+        <p
+          className="philosophy-badge animate-on-scroll"
+          style={{
+            display: 'inline-block',
+            padding: '10px 28px',
+            border: '1px solid var(--primary)',
+            borderRadius: '100px',
+            fontSize: '13px',
+            fontWeight: 600,
+            color: 'var(--primary)',
+            marginTop: '36px',
+            letterSpacing: '1px',
+          }}
+        >
+          超少人数制だからこそ実現できる、一人ひとりへの徹底サポート
         </p>
       </div>
     </section>

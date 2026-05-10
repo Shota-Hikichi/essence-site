@@ -45,3 +45,5 @@ ss-*.png
 
 # claude
 .claude/
+.env*.local
+lab-gen.log

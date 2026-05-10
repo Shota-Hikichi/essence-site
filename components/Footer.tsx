@@ -7,7 +7,7 @@ export default function Footer() {
             <span className="logo-text">ESSENCE</span>
           </div>
           <p>
-            オンライン受験コーチングサービス<br />
+            オンライン受験コーチング<br />
             あなたの「本質」を見極め、最短ルートで合格へ。
           </p>
         </div>
@@ -21,18 +21,9 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h4>サポート</h4>
-          <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">お問い合わせ</a></li>
-            <li><a href="#">プライバシーポリシー</a></li>
-          </ul>
-        </div>
-        <div>
           <h4>法的情報</h4>
           <ul>
-            <li><a href="/tokushoho">特定商取引法に基づく表示</a></li>
-            <li><a href="#">利用規約</a></li>
+            <li><a href="/tokushoho">特定商取引法に基づく表記</a></li>
           </ul>
         </div>
         <div className="footer-bottom" style={{ gridColumn: '1 / -1' }}>

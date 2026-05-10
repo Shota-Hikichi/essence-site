@@ -5,8 +5,15 @@ import PlanComparison from '@/components/plan/PlanComparison';
 import PlanCta from '@/components/plan/PlanCta';
 
 export const metadata = {
-  title: 'ミニマムプラン | ESSENCE Coaching',
-  description: 'まずはコーチングを試してみたい方へ。チャットサポートと月1回の電話相談で、学習の方向性を明確にします。',
+  title: 'ミニマムプラン',
+  description: 'まずはEssenceのコーチングを試してみたい方向け。チャットサポートと電話相談 週1回（30分/回）で、学習の方向性を明確にします。大学受験オンラインコーチング「Essence」の入門プラン。',
+  alternates: { canonical: 'https://www.essence-coaching.net/plan/minimum' },
+  openGraph: {
+    title: 'ミニマムプラン | Essence',
+    description: 'チャットサポートと電話相談 週1回（30分/回）で学習の方向性を明確化。',
+    url: 'https://www.essence-coaching.net/plan/minimum',
+    type: 'website',
+  },
 };
 
 export default function MinimumPlanPage() {
@@ -16,7 +23,7 @@ export default function MinimumPlanPage() {
         planName="ミニマムプラン"
         tierLabel="MINIMUM PLAN"
         price="29,800"
-        description="まずはコーチングを試してみたい方へ。チャットサポートと月1回の電話相談で、学習の方向性を明確にします." planId="minimum"
+        description="まずはコーチングを試してみたい方へ。チャットサポートと電話相談 週1回（30分/回）で、学習の方向性を明確にします." planId="minimum"
       />
       <PlanFeatures planType="minimum" />
       <PlanWho planType="minimum" />

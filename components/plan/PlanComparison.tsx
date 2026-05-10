@@ -6,11 +6,11 @@ interface PlanComparisonProps {
 
 const rows = [
   { label: 'チャットサポート', minimum: '\u2713', standard: '\u2713', fullcommit: '\u2713（最優先）' },
-  { label: '電話相談', minimum: '月1回', standard: '月2回', fullcommit: '無制限' },
+  { label: '電話相談', minimum: '週1回（30分）', standard: '週2回（1時間）', fullcommit: '回数・時間無制限' },
   { label: '学習管理', minimum: '\u2713', standard: '\u2713', fullcommit: '\u2713' },
   { label: 'ロードマップ作成', minimum: '\u2014', standard: '\u2713', fullcommit: '\u2713（毎月更新）' },
   { label: '小論文添削', minimum: '\u2014', standard: '月3回', fullcommit: '無制限' },
-  { label: '月次進捗レポート', minimum: '\u2014', standard: '\u2014', fullcommit: '\u2713' },
+  { label: '進捗レポート', minimum: '\u2014', standard: '月次', fullcommit: '週次' },
   { label: '料金（税込）', minimum: '\u00A529,800', standard: '\u00A539,800', fullcommit: '\u00A549,800' },
 ];
 
