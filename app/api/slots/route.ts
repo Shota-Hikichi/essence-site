@@ -3,9 +3,9 @@ import Redis from 'ioredis';
 
 const SLOTS_KEY = 'essence:slots';
 const defaultSlots: Record<string, number> = {
-  minimum: 1,
-  standard: 0,
-  fullcommit: 0,
+  minimum: 0,
+  standard: 1,
+  fullcommit: 1,
 };
 
 function getRedis() {
