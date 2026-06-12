@@ -206,6 +206,20 @@ function CheckoutInner() {
               </div>
             </div>
 
+            {/* Auto-renewal notice */}
+            <div style={{ background: '#FFF7ED', border: '1px solid #FED7AA', borderRadius: '12px', padding: '18px 20px', marginBottom: '24px' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: '2px' }}>
+                  <circle cx="10" cy="10" r="8.25" stroke="#C2410C" strokeWidth="1.5" />
+                  <path d="M10 6v4.5M10 13.5h.01" stroke="#C2410C" strokeWidth="1.6" strokeLinecap="round" />
+                </svg>
+                <p style={{ fontSize: '13px', color: '#7C2D12', lineHeight: 1.85, margin: 0 }}>
+                  <strong style={{ fontWeight: 700 }}>自動更新（継続課金）について</strong><br />
+                  クレジットカードでお申込みいただくと、ご決済時に初回の月額料金（&yen;{current.price.toLocaleString()}）が課金されます。その後、<strong>ご決済日の翌日から起算して30日後に同額が自動的に継続課金されます</strong>（以後も30日ごとに自動更新）。解約をご希望の場合は、次回更新日の前日までにお手続きください。退会金はかかりません。
+                </p>
+              </div>
+            </div>
+
             {error && <p style={{ color: '#e00', fontSize: '14px', marginBottom: '16px' }}>{error}</p>}
 
             <button
@@ -309,6 +323,10 @@ function PaymentForm({ planName }: { planName: string }) {
       </div>
 
       {error && <p style={{ color: '#e00', fontSize: '14px', marginBottom: '16px' }}>{error}</p>}
+
+      <p style={{ fontSize: '12.5px', color: '#6B7280', lineHeight: 1.85, marginBottom: '16px', textAlign: 'center' }}>
+        「申し込む」を押すと、初回の月額料金が課金され、<strong style={{ color: '#7C2D12' }}>ご決済日の翌日から起算して30日後に同額が自動的に継続課金されます</strong>（30日ごとに自動更新）。
+      </p>
 
       <button
         type="submit"
