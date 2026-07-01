@@ -46,6 +46,8 @@ export async function generateMetadata({
       url,
       type: 'article',
       publishedTime: post.publishedDate,
+      modifiedTime: post.updatedAt || post.publishedDate,
+      authors: ['引地 祥太'],
       siteName: 'Essence',
       locale: 'ja_JP',
       images: thumb ? [{ url: thumb, width: 1280, height: 720 }] : undefined,
@@ -72,6 +74,30 @@ function categoryEn(jp: string): string {
   return LAB_CATEGORIES.find((c) => c.jp === jp)?.en || 'general';
 }
 
+// Reading time estimate (Japanese ~500 chars/min), based on text length of body.
+function readingTimeMin(html: string): number {
+  const text = html.replace(/<[^>]+>/g, '');
+  return Math.max(1, Math.round(text.length / 500));
+}
+
+// Inject anchor ids into <h2> headings and build a table of contents.
+// microCMS bodies are simple HTML, so a light regex pass is sufficient here.
+function buildToc(html: string): { html: string; toc: { id: string; text: string }[] } {
+  const toc: { id: string; text: string }[] = [];
+  let i = 0;
+  const out = html.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/g, (_m, attrs: string, inner: string) => {
+    const text = inner.replace(/<[^>]+>/g, '').trim();
+    if (!text) return _m;
+    i += 1;
+    const id = `sec-${i}`;
+    toc.push({ id, text });
+    // Preserve existing attributes but ensure our id is present.
+    const cleaned = attrs.replace(/\sid=("[^"]*"|'[^']*')/i, '');
+    return `<h2${cleaned} id="${id}">${inner}</h2>`;
+  });
+  return { html: out, toc };
+}
+
 export default async function LabDetailPage({
   params,
 }: {
@@ -82,6 +108,25 @@ export default async function LabDetailPage({
   if (!post) notFound();
 
   const related = await fetchRelatedLabPosts(post.id, post.category, 3);
+
+  const { html: bodyHtml, toc } = buildToc(post.body);
+  const minutes = readingTimeMin(post.body);
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'HOME', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Essence Lab', item: `${SITE_URL}/lab` },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.category,
+        item: `${SITE_URL}/lab/category/${categoryEn(post.category)}`,
+      },
+      { '@type': 'ListItem', position: 4, name: post.title, item: `${SITE_URL}/lab/${post.slug}` },
+    ],
+  };
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -96,7 +141,9 @@ export default async function LabDetailPage({
     author: {
       '@type': 'Person',
       name: '引地 祥太',
-      url: SITE_URL,
+      jobTitle: '大学受験オンラインコーチング Essence 代表',
+      url: `${SITE_URL}/#profile`,
+      alumniOf: '早稲田大学',
     },
     publisher: {
       '@type': 'Organization',
@@ -116,6 +163,10 @@ export default async function LabDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <article className="container" style={{ maxWidth: '760px' }}>
@@ -151,6 +202,7 @@ export default async function LabDetailPage({
             <span style={{ fontSize: '12px', color: '#9CA3AF', fontFamily: "'Cormorant Garamond', serif", letterSpacing: '0.5px' }}>
               {formatDate(post.publishedDate)}
             </span>
+            <span style={{ fontSize: '12px', color: '#9CA3AF' }}>・約{minutes}分で読めます</span>
           </div>
           <h1
             style={{
@@ -169,11 +221,38 @@ export default async function LabDetailPage({
           </p>
         </header>
 
+        {/* Table of contents */}
+        {toc.length >= 2 && (
+          <nav
+            aria-label="目次"
+            style={{
+              margin: '0 0 36px',
+              padding: '20px 24px',
+              background: '#FAFAF7',
+              border: '1px solid #E5E7EB',
+              borderRadius: '12px',
+            }}
+          >
+            <p style={{ fontSize: '13px', fontWeight: 700, color: '#2D2D3A', marginBottom: '12px', letterSpacing: '0.5px' }}>
+              目次
+            </p>
+            <ol style={{ margin: 0, paddingLeft: '1.3em', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {toc.map((t) => (
+                <li key={t.id} style={{ fontSize: '14px', lineHeight: 1.7 }}>
+                  <a href={`#${t.id}`} style={{ color: 'var(--primary)', textDecoration: 'none' }}>
+                    {t.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
         {/* Body */}
         <div
           className="lab-body"
           style={{ fontSize: '15.5px', lineHeight: 2.0, color: '#2D2D3A' }}
-          dangerouslySetInnerHTML={{ __html: post.body }}
+          dangerouslySetInnerHTML={{ __html: bodyHtml }}
         />
 
         {/* YouTube embed (placed after article body) */}
@@ -308,7 +387,49 @@ export default async function LabDetailPage({
               <path d="M6 12l4-4-4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
           </a>
+          <div style={{ marginTop: '20px', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap', fontSize: '13px' }}>
+            <Link href="/plan/minimum" style={{ color: '#fff', textDecoration: 'underline', opacity: 0.92 }}>ミニマムプラン</Link>
+            <Link href="/plan/standard" style={{ color: '#fff', textDecoration: 'underline', opacity: 0.92 }}>スタンダードプラン</Link>
+            <Link href="/plan/fullcommit" style={{ color: '#fff', textDecoration: 'underline', opacity: 0.92 }}>フルコミットプラン</Link>
+          </div>
         </section>
+
+        {/* Author bio (E-E-A-T) */}
+        <aside
+          style={{
+            marginTop: '32px',
+            padding: '24px',
+            background: '#FAFAF7',
+            border: '1px solid #E5E7EB',
+            borderRadius: '12px',
+            display: 'flex',
+            gap: '18px',
+            alignItems: 'flex-start',
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/founder.jpg"
+            alt="引地 祥太"
+            width={64}
+            height={64}
+            style={{ width: '64px', height: '64px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
+          />
+          <div>
+            <p style={{ fontSize: '11px', color: '#9CA3AF', fontWeight: 700, letterSpacing: '1px', marginBottom: '4px' }}>
+              執筆者
+            </p>
+            <p style={{ fontSize: '15px', fontWeight: 700, color: '#2D2D3A', marginBottom: '6px' }}>
+              引地 祥太 <span style={{ fontSize: '12px', fontWeight: 400, color: '#6B7280' }}>／ Essence 代表・早稲田大学社会科学部</span>
+            </p>
+            <p style={{ fontSize: '13px', color: '#4B5563', lineHeight: 1.9, marginBottom: '10px' }}>
+              大学受験オンラインコーチング「Essence」代表。数百件の受験相談に応えてきた知見をもとに、志望校合格から逆算した学習設計を発信しています。
+            </p>
+            <Link href="/#profile" style={{ fontSize: '13px', color: 'var(--primary)', fontWeight: 600, textDecoration: 'none' }}>
+              プロフィールを見る →
+            </Link>
+          </div>
+        </aside>
 
         {/* Related */}
         {related.length > 0 && (
