@@ -9,7 +9,7 @@ import Flow from '@/components/Flow';
 import Profile from '@/components/Profile';
 import Testimonials from '@/components/Testimonials';
 import ReportSample from '@/components/ReportSample';
-import Delto from '@/components/Delto';
+// import Delto from '@/components/Delto'; // 一時非表示
 import PricingCompare from '@/components/PricingCompare';
 import Plans from '@/components/Plans';
 import CtaSection from '@/components/CtaSection';
@@ -27,7 +27,7 @@ export default function Home() {
       <Philosophy />
       <Stats />
       <Services />
-      <Delto />
+      {/* <Delto /> 一時非表示 */}
       <ReportSample />
       <Approach />
       <Flow />
