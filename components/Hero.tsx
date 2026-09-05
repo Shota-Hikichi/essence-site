@@ -12,6 +12,7 @@ export default function Hero() {
             最短ルートで志望校へ。
           </h1>
           <p className="hero-description hero-animate-text delay-2">
+            創業者・引地（Hikky）が<strong>マンツーマン</strong>で直接指導。<br />
             決まったカリキュラムを押し付けるのではなく、<br />
             あなたの現在地と志望校の距離を逆算して、<br />
             合格点突破に必要なことだけを設計する本質コーチング

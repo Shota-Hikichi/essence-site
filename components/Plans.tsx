@@ -7,8 +7,28 @@ export default function Plans() {
         <p className="section-label">Plans</p>
         <h2 className="section-title">あなたに合ったプランを</h2>
         <p className="section-subtitle" style={{ margin: '0 auto' }}>
-          すべてのプランに無料相談が含まれます。まずはお気軽にご相談ください。
+          すべてのプランで引地（Hikky）本人がマンツーマンで指導します。無料相談もお気軽にどうぞ。
         </p>
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            margin: '16px auto 0',
+            padding: '8px 20px',
+            background: '#FEF3F3',
+            border: '1px solid #F4C0C0',
+            borderRadius: '999px',
+            fontSize: '13px',
+            color: '#9A071A',
+            fontWeight: 600,
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />
+          </svg>
+          全プラン、引地本人によるマンツーマン指導
+        </div>
         <div className="plans-grid">
           {/* Minimum */}
           <div className="plan-card animate-on-scroll stagger-1">

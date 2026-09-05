@@ -23,7 +23,7 @@ export default function CtaSection() {
       <div className="container animate-on-scroll scale-up">
         <h2>まずは15分の無料相談から</h2>
         <p>
-          受験のお悩み、学習計画の相談、プランのご質問など、お気軽にどうぞ。<br />
+          引地（Hikky）本人が直接お答えします。受験のお悩み、学習計画の相談、プランのご質問など、お気軽にどうぞ。<br />
           無理な勧誘は一切いたしません。
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '28px', marginTop: '8px' }}>

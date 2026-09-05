@@ -7,7 +7,7 @@ export default function Services() {
         <p className="section-label animate-on-scroll">Services</p>
         <h2 className="section-title animate-on-scroll">あなたの合格を支える4つのサポート</h2>
         <p className="section-subtitle animate-on-scroll" style={{ margin: '0 auto' }}>
-          チャットから電話相談まで、あらゆる場面であなたの受験を支えます。
+          チャットから電話相談まで、引地（Hikky）本人がマンツーマンであらゆる場面であなたの受験を支えます。
         </p>
         <div className={`services-grid ${svcStyles.grid}`}>
           <div className="service-card animate-on-scroll stagger-1">
